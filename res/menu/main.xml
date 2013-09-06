@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	    <item android:id="@+id/CMax" android:title="CMax">
+	        <menu>
+	          <item android:id="@+id/climate" android:title="Climate">
+			        <menu>
+	    	        <group android:id="@+id/climate_menu">
+	                <item android:id="@+id/ac_on" android:title="AC On"/>
+	                <item android:id="@+id/fan_max" android:title="Fan Max"/>
+	                <item android:id="@+id/fan_min" android:title="Fan Min"/>
+	                <item android:id="@+id/max_ac" android:title="Max AC"/>
+	                <item android:id="@+id/recirc" android:title="Recirculating"/>
+	                <item android:id="@+id/temp_lo" android:title="Temp 70F"/>
+	                <item android:id="@+id/temp_hi" android:title="Temp 80F"/>
+							    <item android:id="@+id/defrost" android:title="Rear Defrost"/>
+	      	      </group>
+	        		</menu>
+				    </item>
+				    <item android:id="@+id/door_unlock" android:title="Unlock Doors"/>
+				    <item android:id="@+id/door_lock" android:title="Lock Doors"/>
+				    <item android:id="@+id/desired_soc" android:title="SOC 25%"/>
+	        </menu>
+	    </item>
+	    
+	    <item android:id="@+id/Fusion" android:title="Fusion">	    
+	        <menu>
+	        <item android:id="@+id/cruise_menu" android:title="Cruise">
+	   	 			<menu>
+			    		<group android:id="@+id/cruise" android:menuCategory="container" android:enabled="true" android:visible="true">
+  			      	<item android:id="@+id/cruise_on" android:title="On"></item>
+		    		    <item android:id="@+id/cruise_off" android:title="Off"></item>
+  	    		  	<item android:id="@+id/cruise_set" android:title="Set"></item>
+    	    			<item android:id="@+id/cruise_resume" android:title="Resume"></item>
+	    	  	  	<item android:id="@+id/cruise_cancel" android:title="Cancel"></item>
+	  			      <item android:id="@+id/cruise_inc" android:title="Increment"></item>
+  		  		    <item android:id="@+id/cruise_dec" android:title="Decrement"></item>
+  	  				</group>
+		    	</menu>
+	    	</item>
+	    	<item android:id="@+id/audio_menu" android:title="Audio">
+	      	<menu>
+		    		<group android:id="@+id/audio" android:menuCategory="container" android:enabled="true" android:visible="true">
+			        <item android:id="@+id/vol_mid" android:title="Vol 20"></item>
+  			      <item android:id="@+id/vol_mute" android:title="Mute"></item>
+    			    <item android:id="@+id/beep" android:title="Beep"></item>
+    			    <item android:id="@+id/vol2_down" android:title="Vol Down" />
+    			    <item android:id="@+id/vol2_up" android:title="Vol Up" />
+	   	 			</group>
+  	    	</menu>
+      	</item>
+      	<item android:id="@+id/ev_menu" android:title="EV">
+	        <menu>
+	            <group android:id="@+id/ev">
+	                <item android:id="@+id/engine_speed" android:title="Engine 2kRPM"/>
+	                <item android:id="@+id/engine_mode_ev" android:title="EV Driving"/>
+	                <item android:id="@+id/engine_mode_on" android:title="Sustain + Engine"/>
+	               	
+	            </group>
+	        </menu>
+	    </item>
+	    </menu>
+	    </item>
+</menu>
