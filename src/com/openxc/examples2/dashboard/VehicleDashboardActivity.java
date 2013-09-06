@@ -650,7 +650,7 @@ public class VehicleDashboardActivity extends Activity {
             }
             return true; 
         case R.id.door_unlock:
-        	DoorLocks dlu = new DoorLocks(DoorLocks.LockCommands.LOCK_ALL);
+        	DoorLocks dlu = new DoorLocks(DoorLocks.LockCommands.UNLOCK_ALL);
         	try {
         		mVehicleManager.send(dlu);
             } catch(UnrecognizedMeasurementTypeException e) {
