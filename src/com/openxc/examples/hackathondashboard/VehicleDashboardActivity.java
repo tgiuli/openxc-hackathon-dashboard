@@ -1,4 +1,4 @@
-package com.openxc.examples2.dashboard;
+package com.openxc.examples.hackathondashboard;
 
 import android.app.Activity;
 import android.content.ComponentName;
