@@ -489,7 +489,7 @@ public class VehicleDashboardActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-    	CruiseControl cmd;
+    	BaseMeasurement<?> cmd;
     	VolumeSet vol_cmd;
     	VolumeSetPoint vol2_cmd;
     	
@@ -592,27 +592,91 @@ public class VehicleDashboardActivity extends Activity {
             }
             return true; 
         case R.id.ac_on:
-        	AirConditioning ac = new AirConditioning(AirConditioning.ACCommands.ON);
+        	cmd = new ClimateMode(ClimateMode.ClimateControls.AUTO);
         	try {
-        		mVehicleManager.send(ac);
+        		mVehicleManager.send(cmd);
             } catch(UnrecognizedMeasurementTypeException e) {
-                Log.w(TAG, "Unable to send AC command", e);
+                Log.w(TAG, "Unable to send AC AUTO command", e);
             }
             return true; 
         case R.id.max_ac:
-        	ClimateMode cm = new ClimateMode(ClimateMode.ClimateControls.MAX_AC);
+        	cmd = new ClimateMode(ClimateMode.ClimateControls.MAX_AC);
         	try {
-        		mVehicleManager.send(cm);
+        		mVehicleManager.send(cmd);
             } catch(UnrecognizedMeasurementTypeException e) {
                 Log.w(TAG, "Unable to send AC MAX command", e);
             }
             return true; 
         case R.id.recirc:
-        	FreshAirVent fav = new FreshAirVent(FreshAirVent.VentModes.RECIRCULATING);
+        	cmd = new ClimateMode(ClimateMode.ClimateControls.RECIRCULATION);
         	try {
-        		mVehicleManager.send(fav);
+        		mVehicleManager.send(cmd);
             } catch(UnrecognizedMeasurementTypeException e) {
-                Log.w(TAG, "Unable to send recirculating command", e);
+                Log.w(TAG, "Unable to send AC recirculation command", e);
+            }
+            return true; 
+        case R.id.rear_defrost:
+        	cmd = new ClimateMode(ClimateMode.ClimateControls.REAR_DEFROST);
+        	try {
+        		mVehicleManager.send(cmd);
+            } catch(UnrecognizedMeasurementTypeException e) {
+                Log.w(TAG, "Unable to send rear defrost command", e);
+            }
+            return true; 
+        case R.id.front_defrost:
+        	cmd = new ClimateMode(ClimateMode.ClimateControls.FRONT_DEFROST);
+        	try {
+        		mVehicleManager.send(cmd);
+            } catch(UnrecognizedMeasurementTypeException e) {
+                Log.w(TAG, "Unable to send front defrost command", e);
+            }
+            return true; 
+        case R.id.max_defrost:
+        	cmd = new ClimateMode(ClimateMode.ClimateControls.MAX_DEFROST);
+        	try {
+        		mVehicleManager.send(cmd);
+            } catch(UnrecognizedMeasurementTypeException e) {
+                Log.w(TAG, "Unable to send max defrost command", e);
+            }
+            return true; 
+        case R.id.fan_dec:
+        	cmd = new ClimateMode(ClimateMode.ClimateControls.FAN_SPEED_DECREMENT);
+        	try {
+        		mVehicleManager.send(cmd);
+            } catch(UnrecognizedMeasurementTypeException e) {
+                Log.w(TAG, "Unable to send fan speed decrement command", e);
+            }
+            return true; 
+        case R.id.fan_inc:
+        	cmd = new ClimateMode(ClimateMode.ClimateControls.FAN_SPEED_INCREMENT);
+        	try {
+        		mVehicleManager.send(cmd);
+            } catch(UnrecognizedMeasurementTypeException e) {
+                Log.w(TAG, "Unable to send fan speed increment command", e);
+            }
+            return true; 
+        case R.id.panel_vent:
+        	cmd = new ClimateMode(ClimateMode.ClimateControls.PANEL_VENT);
+        	try {
+        		mVehicleManager.send(cmd);
+            } catch(UnrecognizedMeasurementTypeException e) {
+                Log.w(TAG, "Unable to send panel vent command", e);
+            }
+            return true; 
+        case R.id.panel_floor:
+        	cmd = new ClimateMode(ClimateMode.ClimateControls.PANEL_FLOOR);
+        	try {
+        		mVehicleManager.send(cmd);
+            } catch(UnrecognizedMeasurementTypeException e) {
+                Log.w(TAG, "Unable to send panel floor command", e);
+            }
+            return true; 
+        case R.id.floor:
+        	cmd = new ClimateMode(ClimateMode.ClimateControls.FLOOR);
+        	try {
+        		mVehicleManager.send(cmd);
+            } catch(UnrecognizedMeasurementTypeException e) {
+                Log.w(TAG, "Unable to send floor command", e);
             }
             return true; 
         case R.id.temp_lo:
@@ -631,14 +695,6 @@ public class VehicleDashboardActivity extends Activity {
         		mVehicleManager.send(cth);
             } catch(UnrecognizedMeasurementTypeException e) {
                 Log.w(TAG, "Unable to send temperature command", e);
-            }
-            return true; 
-        case R.id.defrost:
-        	RearDefrost rd = new RearDefrost(RearDefrost.DefrostCommand.ON); 
-        	try {
-        		mVehicleManager.send(rd);
-            } catch(UnrecognizedMeasurementTypeException e) {
-                Log.w(TAG, "Unable to send defrost command", e);
             }
             return true; 
         case R.id.door_lock:

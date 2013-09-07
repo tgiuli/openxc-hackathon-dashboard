@@ -7,13 +7,18 @@
 			        <menu>
 	    	        <group android:id="@+id/climate_menu">
 	                <item android:id="@+id/ac_on" android:title="AC On"/>
-	                <item android:id="@+id/fan_max" android:title="Fan Max"/>
-	                <item android:id="@+id/fan_min" android:title="Fan Min"/>
+	                <item android:id="@+id/fan_inc" android:title="Fan Increment"/>
+	                <item android:id="@+id/fan_dec" android:title="Fan Decrement"/>
+	                <item android:id="@+id/panel_vent" android:title="Panel Vent"/>
+	                <item android:id="@+id/panel_floor" android:title="Panel Floor"/>
+	                <item android:id="@+id/floor" android:title="Floor"/>
 	                <item android:id="@+id/max_ac" android:title="Max AC"/>
 	                <item android:id="@+id/recirc" android:title="Recirculating"/>
 	                <item android:id="@+id/temp_lo" android:title="Temp 70F"/>
 	                <item android:id="@+id/temp_hi" android:title="Temp 80F"/>
-							    <item android:id="@+id/defrost" android:title="Rear Defrost"/>
+					<item android:id="@+id/rear_defrost" android:title="Rear Defrost"/>
+					<item android:id="@+id/front_defrost" android:title="Front Defrost"/>
+					<item android:id="@+id/max_defrost" android:title="Max Defrost"/>
 	      	      </group>
 	        		</menu>
 				    </item>
