@@ -341,9 +341,17 @@ public class VehicleDashboardActivity extends Activity {
     	}
     };
 
+    AirConditioning.Listener mAirConditioningStatusListener = new AirConditioning.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final AirConditioning status = (AirConditioning) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mAirConditioningStatusView.setText("" + status.getValue().enumValue()); }
+    		});
+    	}
+    };
     
-    // TODO - Air Conditioning Status listener goes here
-    
+   
     BatteryLevel.Listener mBatteryLevelListener = new BatteryLevel.Listener() {
     	public void receive(Measurement measurement)
     	{
@@ -755,7 +763,7 @@ public class VehicleDashboardActivity extends Activity {
 
                 // Extended signals
                 mVehicleManager.addListener(ACCompressorPower.class,		mACCompressorPowerListener);
-//                mVehicleManager.addListener(AirConditioning.class,			mAirConditioningStatusListener);
+                mVehicleManager.addListener(AirConditioning.class,			mAirConditioningStatusListener);
                 mVehicleManager.addListener(BatteryLevel.class,				mBatteryLevelListener);
                 mVehicleManager.addListener(BatteryTemperature.class,		mBatteryTemperatureListener);
                 mVehicleManager.addListener(ChargingPlugStatus.class,		mChargingPlugStatusListener);
@@ -839,7 +847,7 @@ public class VehicleDashboardActivity extends Activity {
         mACCompressorPowerView			= (TextView) findViewById(R.id.ac_compressor_power);
         mAirConditioningStatusView		= (TextView) findViewById(R.id.air_conditioning_status);
         mBatteryLevelView				= (TextView) findViewById(R.id.battery_level);
-        mBatteryTemperatureView		= (TextView) findViewById(R.id.battery_temperature);
+        mBatteryTemperatureView			= (TextView) findViewById(R.id.battery_temperature);
         mChargingPlugStatusView			= (TextView) findViewById(R.id.charging_plug_status);
         mChargingStatusView				= (TextView) findViewById(R.id.charging_status);
         mCustomerSocView				= (TextView) findViewById(R.id.customer_soc);
@@ -851,7 +859,7 @@ public class VehicleDashboardActivity extends Activity {
         mEVModeView						= (TextView) findViewById(R.id.ev_mode);
         mEVStateOfChargeView			= (TextView) findViewById(R.id.ev_state_of_charge);
         mHeaterStatusView				= (TextView) findViewById(R.id.heater_status);
-        mChargeTimeView			= (TextView) findViewById(R.id.hours_until_charged);
+        mChargeTimeView					= (TextView) findViewById(R.id.hours_until_charged);
         mHvBatteryCurrentView			= (TextView) findViewById(R.id.hv_battery_current);
         mHvBatteryVoltageView			= (TextView) findViewById(R.id.hv_battery_voltage);
         mHybridStateOfChargeView		= (TextView) findViewById(R.id.hybrid_state_of_charge);
@@ -865,10 +873,10 @@ public class VehicleDashboardActivity extends Activity {
         mTirePressureRearLeftView		= (TextView) findViewById(R.id.tire_pressure_rear_left);
         mTirePressureRearRightView		= (TextView) findViewById(R.id.tire_pressure_rear_right);
         //mTirePressureStatusView			= (TextView) findViewById(R.id.tire_pressure_status);
-        mTirePressureFrontLeftStatusView = (TextView) findViewById(R.id.tire_pressure_front_left_status);
-        mTirePressureFrontRightStatusView = (TextView) findViewById(R.id.tire_pressure_front_right_status);
-        mTirePressureRearLeftStatusView = (TextView) findViewById(R.id.tire_pressure_rear_left_status);
-        mTirePressureRearRightStatusView = (TextView) findViewById(R.id.tire_pressure_rear_right_status);
+        mTirePressureFrontLeftStatusView	= (TextView) findViewById(R.id.tire_pressure_front_left_status);
+        mTirePressureFrontRightStatusView	= (TextView) findViewById(R.id.tire_pressure_front_right_status);
+        mTirePressureRearLeftStatusView		= (TextView) findViewById(R.id.tire_pressure_rear_left_status);
+        mTirePressureRearRightStatusView	= (TextView) findViewById(R.id.tire_pressure_rear_right_status);
         
         // Not use Signals
         mWLEStatusView					= (TextView) findViewById(R.id.wle_status);
