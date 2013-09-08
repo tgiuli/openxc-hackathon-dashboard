@@ -124,7 +124,15 @@
             style="@style/DefaultValueFont" />
         
         
-        <!-- TODO: HIGH_BEAM_STATUS -->
+        <!-- high_beam_status -->
+        <TextView
+            android:id="@+id/high_beam_status_label"
+            style="@style/DefaultFont"
+            android:text="@string/high_beam_status_label" />
+        <TextView
+            android:id="@+id/high_beam_status"
+            style="@style/DefaultValueFont" />
+        
         
         <!-- ignition_status -->
         <TextView
@@ -325,7 +333,17 @@
             style="@style/DefaultValueFont" />
 
         
-		<!-- electric_range -->
+        <!-- drive_power -->
+        <TextView
+            android:id="@+id/drive_power_label"
+            style="@style/DefaultFont"
+            android:text="@string/drive_power_label" />
+        <TextView
+            android:id="@+id/drive_power"
+            style="@style/DefaultValueFont" />
+        
+        
+        <!-- electric_range -->
         <TextView
             android:id="@+id/electric_range_label"
             style="@style/DefaultFont"

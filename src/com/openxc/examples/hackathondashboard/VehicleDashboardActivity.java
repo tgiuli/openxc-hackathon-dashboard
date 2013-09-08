@@ -42,6 +42,7 @@ public class VehicleDashboardActivity extends Activity {
     private TextView mFuelLevelView;
     private TextView mGearLeverPositionView;
     private TextView mHeadlampStatusView;
+    private TextView mHighBeamStatusView;
     private TextView mIgnitionStatusView;
     private TextView mLatitudeView;
     private TextView mLongitudeView;
@@ -163,6 +164,18 @@ public class VehicleDashboardActivity extends Activity {
         }
     };    
     
+
+    HeadlampStatus.Listener mHighBeamStatus = new HighBeamStatus.Listener() {
+        public void receive(Measurement measurement) {
+            final HighBeamStatus status = (HighBeamStatus) measurement;
+            mHandler.post(new Runnable() {
+                public void run() {
+                    mHighBeamStatusView.setText(
+                        "" + status.getValue().booleanValue());
+                }
+            });
+        }
+    };    
 
     IgnitionStatus.Listener mIgnitionStatus = new IgnitionStatus.Listener() {
         public void receive(Measurement measurement) {
@@ -400,6 +413,7 @@ public class VehicleDashboardActivity extends Activity {
                 mVehicleManager.addListener(FuelLevel.class,				mFuelLevelListener);
                 mVehicleManager.addListener(GearLeverPosition.class,		mGearLeverPositionListener);
                 mVehicleManager.addListener(HeadlampStatus.class,			mHeadlampStatus);
+                mVehicleManager.addListener(HighBeamStatus.class,			mHighBeamStatus);
                 mVehicleManager.addListener(IgnitionStatus.class,			mIgnitionStatus);
                 mVehicleManager.addListener(Latitude.class,					mLatitude);
                 mVehicleManager.addListener(Longitude.class,				mLongitude);
@@ -453,6 +467,7 @@ public class VehicleDashboardActivity extends Activity {
         mFuelLevelView					= (TextView) findViewById(R.id.fuel_level);
         mGearLeverPositionView			= (TextView) findViewById(R.id.gear_lever_position);
         mHeadlampStatusView				= (TextView) findViewById(R.id.headlamp_status);
+        mHighBeamStatusView				= (TextView) findViewById(R.id.high_beam_status);
         mIgnitionStatusView				= (TextView) findViewById(R.id.ignition);
         mLatitudeView					= (TextView) findViewById(R.id.latitude);
         mLongitudeView					= (TextView) findViewById(R.id.longitude);
@@ -828,6 +843,8 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.gear_lever_position_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.headlamp_status)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.headlamp_status_label)).setVisibility(View.VISIBLE);
+    	((TextView)findViewById(R.id.high_beam_status)).setVisibility(View.VISIBLE);
+    	((TextView)findViewById(R.id.high_beam_status_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.ignition)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.ignition_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.latitude)).setVisibility(View.VISIBLE);
@@ -866,6 +883,8 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.dcdc_current_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.dcdc_voltage)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.dcdc_voltage_label)).setVisibility(View.VISIBLE);
+    	((TextView)findViewById(R.id.drive_power)).setVisibility(View.VISIBLE);
+    	((TextView)findViewById(R.id.drive_power_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.electric_range)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.electric_range_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.engine_power)).setVisibility(View.VISIBLE);
@@ -935,6 +954,8 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.gear_lever_position_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.headlamp_status)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.headlamp_status_label)).setVisibility(View.GONE);
+    	((TextView)findViewById(R.id.high_beam_status)).setVisibility(View.GONE);
+    	((TextView)findViewById(R.id.high_beam_status_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.ignition)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.ignition_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.latitude)).setVisibility(View.VISIBLE);
@@ -973,6 +994,8 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.dcdc_current_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.dcdc_voltage)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.dcdc_voltage_label)).setVisibility(View.GONE);
+    	((TextView)findViewById(R.id.drive_power)).setVisibility(View.GONE);
+    	((TextView)findViewById(R.id.drive_power_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.electric_range)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.electric_range_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.engine_power)).setVisibility(View.GONE);
@@ -1042,6 +1065,8 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.gear_lever_position_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.headlamp_status)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.headlamp_status_label)).setVisibility(View.GONE);
+    	((TextView)findViewById(R.id.high_beam_status)).setVisibility(View.GONE);
+    	((TextView)findViewById(R.id.high_beam_status_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.ignition)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.ignition_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.latitude)).setVisibility(View.VISIBLE);
@@ -1080,6 +1105,8 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.dcdc_current_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.dcdc_voltage)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.dcdc_voltage_label)).setVisibility(View.VISIBLE);
+    	((TextView)findViewById(R.id.drive_power)).setVisibility(View.VISIBLE);
+    	((TextView)findViewById(R.id.drive_power_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.electric_range)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.electric_range_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.engine_power)).setVisibility(View.VISIBLE);
@@ -1149,6 +1176,8 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.gear_lever_position_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.headlamp_status)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.headlamp_status_label)).setVisibility(View.VISIBLE);
+    	((TextView)findViewById(R.id.high_beam_status)).setVisibility(View.VISIBLE);
+    	((TextView)findViewById(R.id.high_beam_status_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.ignition)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.ignition_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.latitude)).setVisibility(View.VISIBLE);
@@ -1187,6 +1216,8 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.dcdc_current_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.dcdc_voltage)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.dcdc_voltage_label)).setVisibility(View.GONE);
+    	((TextView)findViewById(R.id.drive_power)).setVisibility(View.GONE);
+    	((TextView)findViewById(R.id.drive_power_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.electric_range)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.electric_range_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.engine_power)).setVisibility(View.GONE);
