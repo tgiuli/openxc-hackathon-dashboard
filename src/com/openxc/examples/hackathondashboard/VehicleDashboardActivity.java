@@ -24,6 +24,7 @@ import com.openxc.VehicleManager;
 import com.openxc.examples2.R;
 import com.openxc.measurements.*;
 import com.openxc.remote.VehicleServiceException;
+import com.openxc.units.Hour;
 
 public class VehicleDashboardActivity extends Activity {
 
@@ -53,9 +54,36 @@ public class VehicleDashboardActivity extends Activity {
     private TextView mTransmissionGearPosView;
     private TextView mVehicleSpeedView;
     private TextView mWiperStatusView;
-    // Extended - Fusion
-    // Extended - CMAX
+    // Extended
     private TextView mACCompressorPowerView;
+    private TextView mAirConditioningStatusView;
+    private TextView mBatteryLevelView;
+    private TextView mBatteryTempereatureView;
+    private TextView mChargingPlugStatusView;
+    private TextView mChargingStatusView;
+    private TextView mCustomerSocView;
+    private TextView mDcDcCurrentView;
+    private TextView mDcDcVoltageView;
+    private TextView mDrivePowerView;
+    private TextView mElectricRangeView;
+    private TextView mEnginePowerView;
+    private TextView mEvModeView;
+    private TextView mEvStateOfChargeView;
+    private TextView mHeaterStatusView;
+    private TextView mHoursUntilChargedView;
+    private TextView mHvBatteryCurrentView;
+    private TextView mHvBatteryVoltageView;
+    private TextView mHybridStateOfChargeView;
+    private TextView mLastRegenEventScoreView;
+    private TextView mOverallStateOfChargeView;
+    private TextView mRelativeDrivePowerView;
+    private TextView mRelativeEnginePowerView;
+    private TextView mTirePressureView;
+    private TextView mTirePressureFrontLeftView;
+    private TextView mTirePressureFrontRightView;
+    private TextView mTirePressureRearLeftView;
+    private TextView mTirePressureRearRightView;
+    private TextView mTirePressureStatusView;
     // Not used
     private TextView mWLEStatusView;
     private TextView mLeftDPadCommandView;
@@ -71,7 +99,7 @@ public class VehicleDashboardActivity extends Activity {
     //////////////////////////
     // Listener definitions //
     //////////////////////////
-    AcceleratorPedalPosition.Listener mAcceleratorPedalPosition = new AcceleratorPedalPosition.Listener() {
+    AcceleratorPedalPosition.Listener mAcceleratorPedalPositionListener = new AcceleratorPedalPosition.Listener() {
         public void receive(Measurement measurement) {
             final AcceleratorPedalPosition status = (AcceleratorPedalPosition) measurement;
             mHandler.post(new Runnable() {
@@ -83,7 +111,7 @@ public class VehicleDashboardActivity extends Activity {
     };
 
 
-    BrakePedalStatus.Listener mBrakePedalStatus = new BrakePedalStatus.Listener() {
+    BrakePedalStatus.Listener mBrakePedalStatusListener = new BrakePedalStatus.Listener() {
         public void receive(Measurement measurement) {
             final BrakePedalStatus status = (BrakePedalStatus) measurement;
             mHandler.post(new Runnable() {
@@ -94,7 +122,7 @@ public class VehicleDashboardActivity extends Activity {
         }
     };
     
-    VehicleDoorStatus.Listener mDoorStatus = new VehicleDoorStatus.Listener() {
+    VehicleDoorStatus.Listener mDoorStatusListener = new VehicleDoorStatus.Listener() {
         public void receive(Measurement measurement) {
             final VehicleDoorStatus event = (VehicleDoorStatus) measurement;
             mHandler.post(new Runnable() {
@@ -107,7 +135,7 @@ public class VehicleDashboardActivity extends Activity {
         }
     };
     
-    EngineSpeed.Listener mEngineSpeed = new EngineSpeed.Listener() {
+    EngineSpeed.Listener mEngineSpeedListener = new EngineSpeed.Listener() {
         public void receive(Measurement measurement) {
             final EngineSpeed status = (EngineSpeed) measurement;
             mHandler.post(new Runnable() {
@@ -152,7 +180,7 @@ public class VehicleDashboardActivity extends Activity {
     	}
     };
     
-    HeadlampStatus.Listener mHeadlampStatus = new HeadlampStatus.Listener() {
+    HeadlampStatus.Listener mHeadlampStatusListener = new HeadlampStatus.Listener() {
         public void receive(Measurement measurement) {
             final HeadlampStatus status = (HeadlampStatus) measurement;
             mHandler.post(new Runnable() {
@@ -165,7 +193,7 @@ public class VehicleDashboardActivity extends Activity {
     };    
     
 
-    HeadlampStatus.Listener mHighBeamStatus = new HighBeamStatus.Listener() {
+    HighBeamStatus.Listener mHighBeamStatusListener = new HighBeamStatus.Listener() {
         public void receive(Measurement measurement) {
             final HighBeamStatus status = (HighBeamStatus) measurement;
             mHandler.post(new Runnable() {
@@ -177,7 +205,7 @@ public class VehicleDashboardActivity extends Activity {
         }
     };    
 
-    IgnitionStatus.Listener mIgnitionStatus = new IgnitionStatus.Listener() {
+    IgnitionStatus.Listener mIgnitionStatusListener = new IgnitionStatus.Listener() {
         public void receive(Measurement measurement) {
             final IgnitionStatus status = (IgnitionStatus) measurement;
             mHandler.post(new Runnable() {
@@ -188,7 +216,7 @@ public class VehicleDashboardActivity extends Activity {
         }
     };
 
-    Latitude.Listener mLatitude = new Latitude.Listener() {
+    Latitude.Listener mLatitudeListener = new Latitude.Listener() {
         public void receive(Measurement measurement) {
             final Latitude lat = (Latitude) measurement;
             mHandler.post(new Runnable() {
@@ -200,7 +228,7 @@ public class VehicleDashboardActivity extends Activity {
     };
 
 
-    Longitude.Listener mLongitude = new Longitude.Listener() {
+    Longitude.Listener mLongitudeListener = new Longitude.Listener() {
         public void receive(Measurement measurement) {
             final Longitude lng = (Longitude) measurement;
             mHandler.post(new Runnable() {
@@ -222,7 +250,6 @@ public class VehicleDashboardActivity extends Activity {
         }
     };
     
-    // PARKING BRAKE ?????
     ParkingBrakeStatus.Listener mParkingBrakeStatusListener = new ParkingBrakeStatus.Listener() {
     	public void receive(Measurement measurement) {
     		final ParkingBrakeStatus status = (ParkingBrakeStatus) measurement;
@@ -233,7 +260,8 @@ public class VehicleDashboardActivity extends Activity {
 			});
     	}
     };
- 
+
+    
     SteeringWheelAngle.Listener mSteeringWheelListener = new SteeringWheelAngle.Listener() {
         public void receive(Measurement measurement) {
             final SteeringWheelAngle angle = (SteeringWheelAngle) measurement;
@@ -246,7 +274,7 @@ public class VehicleDashboardActivity extends Activity {
     };
     
 
-    TorqueAtTransmission.Listener mTorqueAtTransmission = new TorqueAtTransmission.Listener() {
+    TorqueAtTransmission.Listener mTorqueAtTransmissionListener = new TorqueAtTransmission.Listener() {
         public void receive(Measurement measurement) {
             final TorqueAtTransmission status = (TorqueAtTransmission) measurement;
             mHandler.post(new Runnable() {
@@ -258,7 +286,7 @@ public class VehicleDashboardActivity extends Activity {
     };
 
 
-    TransmissionGearPosition.Listener mTransmissionGearPos = new TransmissionGearPosition.Listener() {
+    TransmissionGearPosition.Listener mTransmissionGearPosListener = new TransmissionGearPosition.Listener() {
         public void receive(Measurement measurement) {
             final TransmissionGearPosition status = (TransmissionGearPosition) measurement;
             mHandler.post(new Runnable() {
@@ -297,23 +325,7 @@ public class VehicleDashboardActivity extends Activity {
 
 
 
-    ParkingBrakeStatus.Listener mParkingBrakeStatus =
-            new ParkingBrakeStatus.Listener() {
-    	public void receive(Measurement measurement) {
-	    final ParkingBrakeStatus status = (ParkingBrakeStatus) measurement;
-            mHandler.post(new Runnable() {
-                public void run() {
-                    mParkingBrakeStatusView.setText(
-                        "" + status.getValue().booleanValue());
-                }
-            });
-        }
-    };
-
-
-    // Extended - Fusion
-
-    // Extended - CMAX
+    // Extended
     ACCompressorPower.Listener mACCompressorPowerListener = new ACCompressorPower.Listener() {
     	public void receive(Measurement measurement) 
     	{
@@ -324,9 +336,88 @@ public class VehicleDashboardActivity extends Activity {
     	}
     };
 
-    // Not used
-
     
+    // TODO - Air Conditioning Status listener goes here
+    
+    BatteryLevel.Listener mBatteryLevelListener = new BatteryLevel.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final BatteryLevel level = (BatteryLevel) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mBatteryLevelView.setText("" + level.getValue().doubleValue()); }
+    		});
+    	}
+    };
+    
+    // TODO - Battery Temperature listener goes here
+    // TODO - Charging Plug Status listener goes here
+    // TODO - Charging Status listener goes here
+    // TODO - Customer SOC listener goes here
+    // TODO - DC/DC Current listener goes here
+    // TODO - DC/DC Voltage listener goes here
+    // TODO - Drive Power listener goes here
+    // TODO - Electric Range listener goes here
+    // TODO - Engine Power listener goes here
+    // TODO - EV Mode listener goes here
+    // TODO - EV State of Charge listener goes here
+    // TODO - Heater Status listener goes here
+    // TODO - Charge Time listener goes here
+    // TODO - High-Voltage Battery Current listener goes here
+    // TODO - High-Voltage Battery Voltage listener goes here
+    // TODO - Hybrid SOC listener goes here
+    // TODO - Last Regen Event Score listener goes here
+    // TODO - Overall SOC listener goes here
+    // TODO - Relative Drive Power listener goes here
+    // TODO - Relative Engine Power listener goes here
+    // TODO - Tire Pressure listener goes here
+    
+    TirePressFL.Listener mTirePressureFrontLeftListener = new TirePressFL.Listener() {
+    	public void receive(Measurement measurement) {
+    		final TirePressFL pressure = (TirePressFL) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() {
+    				mTirePressureFrontLeftView.setText("" + pressure.getValue().doubleValue());
+    			}
+    		});
+    	}
+    };
+
+    TirePressFL.Listener mTirePressureFrontRightListener = new TirePressFR.Listener() {
+    	public void receive(Measurement measurement) {
+    		final TirePressFR pressure = (TirePressFR) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() {
+    				mTirePressureFrontRightView.setText("" + pressure.getValue().doubleValue());
+    			}
+    		});
+    	}
+    };
+
+    TirePressFL.Listener mTirePressureRearLeftListener = new TirePressRL.Listener() {
+    	public void receive(Measurement measurement) {
+    		final TirePressRL pressure = (TirePressRL) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() {
+    				mTirePressureRearLeftView.setText("" + pressure.getValue().doubleValue());
+    			}
+    		});
+    	}
+    };
+
+    TirePressFL.Listener mTirePressureRearRightListener = new TirePressRR.Listener() {
+    	public void receive(Measurement measurement) {
+    		final TirePressRR pressure = (TirePressRR) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() {
+    				mTirePressureRearRightView.setText("" + pressure.getValue().doubleValue());
+    			}
+    		});
+    	}
+    };
+
+    // TODO - Tire Pressure Status listener goes here
+    
+    // Not used
     WLEStatus.Listener mWLEStatusListener = new WLEStatus.Listener() {
     	public void receive(Measurement measurement) {
     		final WLEStatus wle = (WLEStatus) measurement;
@@ -363,7 +454,7 @@ public class VehicleDashboardActivity extends Activity {
     };
     
 
-    VehicleButtonEvent.Listener mButtonEvent = new VehicleButtonEvent.Listener() {
+    VehicleButtonEvent.Listener mButtonEventListener = new VehicleButtonEvent.Listener() {
         public void receive(Measurement measurement) {
             final VehicleButtonEvent event = (VehicleButtonEvent) measurement;
             mHandler.post(new Runnable() {
@@ -405,36 +496,62 @@ public class VehicleDashboardActivity extends Activity {
 
             try {
             	// Standard signals
-                mVehicleManager.addListener(AcceleratorPedalPosition.class,	mAcceleratorPedalPosition);
-                mVehicleManager.addListener(BrakePedalStatus.class,			mBrakePedalStatus);
-                mVehicleManager.addListener(VehicleDoorStatus.class,		mDoorStatus);
-                mVehicleManager.addListener(EngineSpeed.class,				mEngineSpeed);
+                mVehicleManager.addListener(AcceleratorPedalPosition.class,	mAcceleratorPedalPositionListener);
+                mVehicleManager.addListener(BrakePedalStatus.class,			mBrakePedalStatusListener);
+                mVehicleManager.addListener(VehicleDoorStatus.class,		mDoorStatusListener);
+                mVehicleManager.addListener(EngineSpeed.class,				mEngineSpeedListener);
                 mVehicleManager.addListener(FuelConsumed.class,				mFuelConsumedListener);
                 mVehicleManager.addListener(FuelLevel.class,				mFuelLevelListener);
                 mVehicleManager.addListener(GearLeverPosition.class,		mGearLeverPositionListener);
-                mVehicleManager.addListener(HeadlampStatus.class,			mHeadlampStatus);
-                mVehicleManager.addListener(HighBeamStatus.class,			mHighBeamStatus);
-                mVehicleManager.addListener(IgnitionStatus.class,			mIgnitionStatus);
-                mVehicleManager.addListener(Latitude.class,					mLatitude);
-                mVehicleManager.addListener(Longitude.class,				mLongitude);
+                mVehicleManager.addListener(HeadlampStatus.class,			mHeadlampStatusListener);
+                mVehicleManager.addListener(HighBeamStatus.class,			mHighBeamStatusListener);
+                mVehicleManager.addListener(IgnitionStatus.class,			mIgnitionStatusListener);
+                mVehicleManager.addListener(Latitude.class,					mLatitudeListener);
+                mVehicleManager.addListener(Longitude.class,				mLongitudeListener);
                 mVehicleManager.addListener(Odometer.class,					mOdometerListener);
-                mVehicleManager.addListener(ParkingBrakeStatus.class,		mParkingBrakeStatus);
+                mVehicleManager.addListener(ParkingBrakeStatus.class,		mParkingBrakeStatusListener);
                 mVehicleManager.addListener(SteeringWheelAngle.class,		mSteeringWheelListener);
-                mVehicleManager.addListener(TorqueAtTransmission.class,		mTorqueAtTransmission);
-                mVehicleManager.addListener(TransmissionGearPosition.class,	mTransmissionGearPos);
+                mVehicleManager.addListener(TorqueAtTransmission.class,		mTorqueAtTransmissionListener);
+                mVehicleManager.addListener(TransmissionGearPosition.class,	mTransmissionGearPosListener);
                 mVehicleManager.addListener(VehicleSpeed.class,				mSpeedListener);
                 mVehicleManager.addListener(WindshieldWiperStatus.class,	mWiperListener);
 
-                // Extended signals - Fusion
-                
-                // Extended signals - CMAX
+                // Extended signals
                 mVehicleManager.addListener(ACCompressorPower.class,		mACCompressorPowerListener);
+//                mVehicleManager.addListener(AirConditioning.class,			mAirConditioningStatusListener);
+                mVehicleManager.addListener(BatteryLevel.class,				mBatteryLevelListener);
+//                mVehicleManager.addListener(BatteryTemperature.class,		mBatteryTempereatureListener);
+//                mVehicleManager.addListener(ChargingPlugStatus.class,		mChargingPlugStatusListener);
+//                mVehicleManager.addListener(ChargingStatus.class,			mChargingStatusListener);
+//                mVehicleManager.addListener(CustomerSoc.class,				mCustomerSocListener);
+//                mVehicleManager.addListener(DcDcCurrent.class,				mDcDcCurrentListener);
+//                mVehicleManager.addListener(DcDcVoltage.class,				mDcDcVoltageListener);
+//                mVehicleManager.addListener(DrivePower.class,				mDrivePowerListener);
+//                mVehicleManager.addListener(ElectricRange.class,			mElectricRangeListener);
+//                mVehicleManager.addListener(EnginePower.class,				mEnginePowerListener);
+//                mVehicleManager.addListener(EVMode.class,					mEvModeListener);
+//                mVehicleManager.addListener(EVStateOfCharge.class,			mEvStateOfChargeListener);
+//                mVehicleManager.addListener(HeaterStatus.class,				mHeaterStatusListener);
+//                mVehicleManager.addListener(ChargeTime.class,				mHoursUntilChargedListener);
+//                mVehicleManager.addListener(HvBatteryCurrent.class,			mHvBatteryCurrentListener);
+//                mVehicleManager.addListener(HvBatteryVoltage.class,			mHvBatteryVoltageListener);
+//                mVehicleManager.addListener(HybridStateOfCharge.class,		mHybridStateOfChargeListener);
+//                mVehicleManager.addListener(LastRegenEventScore.class,		mLastRegenEventScoreListener);
+//                mVehicleManager.addListener(OverallStateOfCharge.class,		mOverallStateOfChargeListener);
+//                mVehicleManager.addListener(RelativeDrivePower.class,		mRelativeDrivePowerListener);
+//                mVehicleManager.addListener(RelativeEnginePower.class,      mRelativeEnginePowerListener);
+//                mVehicleManager.addListener(TirePressure.class,				mTirePressureListener);
+                mVehicleManager.addListener(TirePressFL.class,				mTirePressureFrontLeftListener);
+                mVehicleManager.addListener(TirePressFR.class,				mTirePressureFrontRightListener);
+                mVehicleManager.addListener(TirePressRL.class,				mTirePressureRearLeftListener);
+                mVehicleManager.addListener(TirePressRR.class,				mTirePressureRearRightListener);
+//                mVehicleManager.addListener(TirePressureStatus.class,		mTirePressureStatusListener);
                 
                 // Non-used signals
                 mVehicleManager.addListener(WLEStatus.class, 				mWLEStatusListener);
             	mVehicleManager.addListener(LeftDPadCommand.class, 			mLeftDPadListener);
                 mVehicleManager.addListener(RightDPadCommand.class,			mRightDPadListener);
-                mVehicleManager.addListener(VehicleButtonEvent.class,		mButtonEvent);
+                mVehicleManager.addListener(VehicleButtonEvent.class,		mButtonEventListener);
 
             } catch(VehicleServiceException e) {
                 Log.w(TAG, "Couldn't add listeners for measurements", e);
@@ -479,10 +596,36 @@ public class VehicleDashboardActivity extends Activity {
         mVehicleSpeedView				= (TextView) findViewById(R.id.vehicle_speed);
         mWiperStatusView				= (TextView) findViewById(R.id.wiper_status);
         
-        // Extended Signals - Fusion
-        
-        // Extended Signals - CMAX
+        // Extended Signals
         mACCompressorPowerView			= (TextView) findViewById(R.id.ac_compressor_power);
+        mAirConditioningStatusView		= (TextView) findViewById(R.id.air_conditioning_status);
+        mBatteryLevelView				= (TextView) findViewById(R.id.battery_level);
+        mBatteryTempereatureView		= (TextView) findViewById(R.id.battery_temperature);
+        mChargingPlugStatusView			= (TextView) findViewById(R.id.charging_plug_status);
+        mChargingStatusView				= (TextView) findViewById(R.id.charging_status);
+        mCustomerSocView				= (TextView) findViewById(R.id.customer_soc);
+        mDcDcCurrentView				= (TextView) findViewById(R.id.dcdc_current);
+        mDcDcVoltageView				= (TextView) findViewById(R.id.dcdc_voltage);
+        mDrivePowerView					= (TextView) findViewById(R.id.drive_power);
+        mElectricRangeView				= (TextView) findViewById(R.id.electric_range);
+        mEnginePowerView				= (TextView) findViewById(R.id.engine_power);
+        mEvModeView						= (TextView) findViewById(R.id.ev_mode);
+        mEvStateOfChargeView			= (TextView) findViewById(R.id.ev_state_of_charge);
+        mHeaterStatusView				= (TextView) findViewById(R.id.heater_status);
+        mHoursUntilChargedView			= (TextView) findViewById(R.id.hours_until_charged);
+        mHvBatteryCurrentView			= (TextView) findViewById(R.id.hv_battery_current);
+        mHvBatteryVoltageView			= (TextView) findViewById(R.id.hv_battery_voltage);
+        mHybridStateOfChargeView		= (TextView) findViewById(R.id.hybrid_state_of_charge);
+        mLastRegenEventScoreView		= (TextView) findViewById(R.id.last_regen_event_score);
+        mOverallStateOfChargeView		= (TextView) findViewById(R.id.overall_state_of_charge);
+        mRelativeDrivePowerView			= (TextView) findViewById(R.id.relative_drive_power);
+        mRelativeEnginePowerView		= (TextView) findViewById(R.id.relative_engine_power);
+        mTirePressureView				= (TextView) findViewById(R.id.tire_pressure);
+        mTirePressureFrontLeftView		= (TextView) findViewById(R.id.tire_pressure_front_left);
+        mTirePressureFrontRightView		= (TextView) findViewById(R.id.tire_pressure_front_right);
+        mTirePressureRearLeftView		= (TextView) findViewById(R.id.tire_pressure_rear_left);
+        mTirePressureRearRightView		= (TextView) findViewById(R.id.tire_pressure_rear_right);
+        mTirePressureStatusView			= (TextView) findViewById(R.id.tire_pressure_status);
         
         // Not use Signals
         mWLEStatusView					= (TextView) findViewById(R.id.wle_status);
@@ -827,6 +970,7 @@ public class VehicleDashboardActivity extends Activity {
 
     
     private void setVisibilityForAll() {
+    	// Standard Signals
     	((TextView)findViewById(R.id.accelerator_pedal_position)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.accelerator_pedal_position_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.brake_pedal_status)).setVisibility(View.VISIBLE);
@@ -865,6 +1009,7 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.vehicle_speed_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.wiper_status)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.wiper_status_label)).setVisibility(View.VISIBLE);
+    	// Extended Signals
     	((TextView)findViewById(R.id.ac_compressor_power)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.ac_compressor_power_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.air_conditioning_status)).setVisibility(View.VISIBLE);
@@ -923,6 +1068,7 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.tire_pressure_rear_right_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.tire_pressure_status)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.tire_pressure_status_label)).setVisibility(View.VISIBLE);
+    	// Non-used signals
     	((TextView)findViewById(R.id.wle_status)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.wle_status_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.left_dpad_command)).setVisibility(View.VISIBLE);
@@ -931,6 +1077,7 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.right_dpad_command_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.button_event)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.button_event_label)).setVisibility(View.VISIBLE);
+    	// Internal signals
     	((TextView)findViewById(R.id.android_latitude)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.android_latitude_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.android_longitude)).setVisibility(View.VISIBLE);
@@ -938,6 +1085,7 @@ public class VehicleDashboardActivity extends Activity {
     }
 
     private void setVisibilityForPhevBlue() {
+    	// Standard Signals
     	((TextView)findViewById(R.id.accelerator_pedal_position)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.accelerator_pedal_position_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.brake_pedal_status)).setVisibility(View.VISIBLE);
@@ -976,6 +1124,7 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.vehicle_speed_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.wiper_status)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.wiper_status_label)).setVisibility(View.VISIBLE);
+    	// Extended Signals
     	((TextView)findViewById(R.id.ac_compressor_power)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.ac_compressor_power_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.air_conditioning_status)).setVisibility(View.GONE);
@@ -1034,6 +1183,7 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.tire_pressure_rear_right_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.tire_pressure_status)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.tire_pressure_status_label)).setVisibility(View.VISIBLE);
+    	// Non-used signals
     	((TextView)findViewById(R.id.wle_status)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.wle_status_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.left_dpad_command)).setVisibility(View.GONE);
@@ -1042,6 +1192,7 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.right_dpad_command_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.button_event)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.button_event_label)).setVisibility(View.GONE);
+    	// Internal signals
     	((TextView)findViewById(R.id.android_latitude)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.android_latitude_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.android_longitude)).setVisibility(View.GONE);
@@ -1049,6 +1200,7 @@ public class VehicleDashboardActivity extends Activity {
     }
 
     private void setVisibilityForPhevRed() {
+    	// Standard Signals
     	((TextView)findViewById(R.id.accelerator_pedal_position)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.accelerator_pedal_position_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.brake_pedal_status)).setVisibility(View.GONE);
@@ -1087,6 +1239,7 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.vehicle_speed_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.wiper_status)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.wiper_status_label)).setVisibility(View.GONE);
+    	// Extended Signals
     	((TextView)findViewById(R.id.ac_compressor_power)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.ac_compressor_power_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.air_conditioning_status)).setVisibility(View.VISIBLE);
@@ -1145,6 +1298,7 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.tire_pressure_rear_right_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.tire_pressure_status)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.tire_pressure_status_label)).setVisibility(View.GONE);
+    	// Non-used signals
     	((TextView)findViewById(R.id.wle_status)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.wle_status_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.left_dpad_command)).setVisibility(View.GONE);
@@ -1153,6 +1307,7 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.right_dpad_command_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.button_event)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.button_event_label)).setVisibility(View.GONE);
+    	// Internal signals
     	((TextView)findViewById(R.id.android_latitude)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.android_latitude_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.android_longitude)).setVisibility(View.GONE);
@@ -1160,6 +1315,7 @@ public class VehicleDashboardActivity extends Activity {
     }
 
     private void setVisibilityForPhevMedia() {
+    	// Standard Signals
     	((TextView)findViewById(R.id.accelerator_pedal_position)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.accelerator_pedal_position_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.brake_pedal_status)).setVisibility(View.VISIBLE);
@@ -1198,6 +1354,7 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.vehicle_speed_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.wiper_status)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.wiper_status_label)).setVisibility(View.VISIBLE);
+    	// Extended Signals
     	((TextView)findViewById(R.id.ac_compressor_power)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.ac_compressor_power_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.air_conditioning_status)).setVisibility(View.GONE);
@@ -1256,6 +1413,7 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.tire_pressure_rear_right_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.tire_pressure_status)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.tire_pressure_status_label)).setVisibility(View.GONE);
+    	// Non-used signals
     	((TextView)findViewById(R.id.wle_status)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.wle_status_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.left_dpad_command)).setVisibility(View.GONE);
@@ -1264,6 +1422,7 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.right_dpad_command_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.button_event)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.button_event_label)).setVisibility(View.GONE);
+    	// Internal signals
     	((TextView)findViewById(R.id.android_latitude)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.android_latitude_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.android_longitude)).setVisibility(View.GONE);

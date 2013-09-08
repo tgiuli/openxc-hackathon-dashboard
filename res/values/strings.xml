@@ -21,7 +21,7 @@
     <string name="fuel_level_label">Fuel Level</string>
     <string name="gear_lever_position_label">Gear Lever Position</string>
     <string name="headlamp_status_label">Headlamp Status</string>
-    <string name="high_beam_status_label"></string>
+    <string name="high_beam_status_label">High Beam Status</string>
     <string name="ignition_label">Ignition Status</string>
     <string name="latitude_label">Latitude</string>
     <string name="longitude_label">Longitude</string>
