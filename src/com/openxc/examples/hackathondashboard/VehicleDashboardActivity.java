@@ -58,7 +58,7 @@ public class VehicleDashboardActivity extends Activity {
     private TextView mACCompressorPowerView;
     private TextView mAirConditioningStatusView;
     private TextView mBatteryLevelView;
-    private TextView mBatteryTempereatureView;
+    private TextView mBatteryTemperatureView;
     private TextView mChargingPlugStatusView;
     private TextView mChargingStatusView;
     private TextView mCustomerSocView;
@@ -67,10 +67,10 @@ public class VehicleDashboardActivity extends Activity {
     private TextView mDrivePowerView;
     private TextView mElectricRangeView;
     private TextView mEnginePowerView;
-    private TextView mEvModeView;
-    private TextView mEvStateOfChargeView;
+    private TextView mEVModeView;
+    private TextView mEVStateOfChargeView;
     private TextView mHeaterStatusView;
-    private TextView mHoursUntilChargedView;
+    private TextView mChargeTimeView;
     private TextView mHvBatteryCurrentView;
     private TextView mHvBatteryVoltageView;
     private TextView mHybridStateOfChargeView;
@@ -349,26 +349,232 @@ public class VehicleDashboardActivity extends Activity {
     	}
     };
     
-    // TODO - Battery Temperature listener goes here
-    // TODO - Charging Plug Status listener goes here
-    // TODO - Charging Status listener goes here
-    // TODO - Customer SOC listener goes here
-    // TODO - DC/DC Current listener goes here
-    // TODO - DC/DC Voltage listener goes here
-    // TODO - Drive Power listener goes here
-    // TODO - Electric Range listener goes here
-    // TODO - Engine Power listener goes here
-    // TODO - EV Mode listener goes here
-    // TODO - EV State of Charge listener goes here
-    // TODO - Heater Status listener goes here
-    // TODO - Charge Time listener goes here
-    // TODO - High-Voltage Battery Current listener goes here
-    // TODO - High-Voltage Battery Voltage listener goes here
-    // TODO - Hybrid SOC listener goes here
-    // TODO - Last Regen Event Score listener goes here
-    // TODO - Overall SOC listener goes here
-    // TODO - Relative Drive Power listener goes here
-    // TODO - Relative Engine Power listener goes here
+    BatteryTemperature.Listener mBatteryTemperatureListener = new BatteryTemperature.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final BatteryTemperature temp = (BatteryTemperature) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mBatteryTemperatureView.setText("" + temp.getValue().doubleValue()); }
+    		});
+    	}
+    };
+    
+    ChargingPlugStatus.Listener mChargingPlugStatusListener = new ChargingPlugStatus.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final ChargingPlugStatus plugStatus = (ChargingPlugStatus) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mChargingPlugStatusView.setText("" + plugStatus.getValue().booleanValue()); }
+    		});
+    	}
+    };
+    
+    ChargingStatus.Listener mChargingStatusListener = new ChargingStatus.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final ChargingStatus chargingStatus = (ChargingStatus) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mChargingStatusView.setText("" + chargingStatus.getValue().enumValue()); }
+    		});
+    	}
+    };
+    
+    CustomerSoc.Listener mCustomerSocListener = new CustomerSoc.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final CustomerSoc soc = (CustomerSoc) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mCustomerSocView.setText("" + soc.getValue().doubleValue()); }
+    		});
+    	}
+    };
+
+    DcDcCurrent.Listener mDcDcCurrentListener = new DcDcCurrent.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final DcDcCurrent current = (DcDcCurrent) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mDcDcCurrentView.setText("" + current.getValue().doubleValue()); }
+    		});
+    	}
+    };
+    
+    DcDcVoltage.Listener mDcDcVoltageListener = new DcDcVoltage.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final DcDcVoltage voltage = (DcDcVoltage) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mDcDcVoltageView.setText("" + voltage.getValue().doubleValue()); }
+    		});
+    	}
+    };
+    
+    DrivePower.Listener mDrivePowerListener = new DrivePower.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final DrivePower dPower = (DrivePower) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mDrivePowerView.setText("" + dPower.getValue().doubleValue()); }
+    		});
+    	}
+    };
+    
+    ElectricRange.Listener mElectricRangeListener = new ElectricRange.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final ElectricRange dPower = (ElectricRange) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mElectricRangeView.setText("" + dPower.getValue().doubleValue()); }
+    		});
+    	}
+    };
+    
+    EnginePower.Listener mEnginePowerListener = new EnginePower.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final EnginePower engPower = (EnginePower) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mEnginePowerView.setText("" + engPower.getValue().doubleValue()); }
+    		});
+    	}
+    };
+    
+    EVMode.Listener mEVModeListener = new EVMode.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final EVMode mode = (EVMode) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mEVModeView.setText("" + mode.getValue().enumValue()); }
+    		});
+    	}
+    };
+    
+    EVStateOfCharge.Listener mEVStateOfChargeListener = new EVStateOfCharge.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final EVStateOfCharge soc = (EVStateOfCharge) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mEVStateOfChargeView.setText("" + soc.getValue().doubleValue()); }
+    		});
+    	}
+    };
+    
+    HeaterStatus.Listener mHeaterStatusListener = new HeaterStatus.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final HeaterStatus heater = (HeaterStatus) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mHeaterStatusView.setText("" + heater.getValue().booleanValue()); }
+    		});
+    	}
+    };
+    
+    ChargeTime.Listener mChargeTimeListener = new ChargeTime.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final ChargeTime chargeTime = (ChargeTime) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mChargeTimeView.setText("" + chargeTime.getValue().doubleValue()); }
+    		});
+    	}
+    };
+    
+    HvBatteryCurrent.Listener mHvBatteryCurrentListener = new HvBatteryCurrent.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final HvBatteryCurrent battCurrent = (HvBatteryCurrent) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mHvBatteryCurrentView.setText("" + battCurrent.getValue().doubleValue()); }
+    		});
+    	}
+    };
+ 
+    HvBatteryVoltage.Listener mHvBatteryVoltageListener = new HvBatteryVoltage.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final HvBatteryVoltage battVoltage = (HvBatteryVoltage) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mHvBatteryVoltageView.setText("" + battVoltage.getValue().doubleValue()); }
+    		});
+    	}
+    };
+
+    HybridStateOfCharge.Listener mHybridStateOfChargeListener = new HybridStateOfCharge.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final HybridStateOfCharge soc = (HybridStateOfCharge) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mHybridStateOfChargeView.setText("" + soc.getValue().doubleValue()); }
+    		});
+    	}
+    };
+    
+    LastRegenEventScore.Listener mLastRegenEventScoreListener = new LastRegenEventScore.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final LastRegenEventScore regen = (LastRegenEventScore) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mLastRegenEventScoreView.setText("" + regen.getValue().doubleValue()); }
+    		});
+    	}
+    };
+    
+    OverallStateOfCharge.Listener mOverallStateOfChargeListener = new OverallStateOfCharge.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final OverallStateOfCharge soc = (OverallStateOfCharge) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mOverallStateOfChargeView.setText("" + soc.getValue().doubleValue()); }
+    		});
+    	}
+    };
+    
+    RelativeDrivePower.Listener mRelativeDrivePowerListener = new RelativeDrivePower.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final RelativeDrivePower relPower = (RelativeDrivePower) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mRelativeDrivePowerView.setText("" + relPower.getValue().doubleValue()); }
+    		});
+    	}
+    };
+
+    RelativeEnginePower.Listener mRelativeEnginePowerListener = new RelativeEnginePower.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final RelativeEnginePower relPower = (RelativeEnginePower) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() { mRelativeEnginePowerView.setText("" + relPower.getValue().doubleValue()); }
+    		});
+    	}
+    };
+    
+    TirePressure.Listener mTirePressureListener = new TirePressure.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final TirePressure tpms = (TirePressure) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() {
+    				switch(tpms.getValue().enumValue()){
+    				case FRONT_LEFT:
+    					mTirePressureFrontLeftView.setText("" + tpms.getEvent());
+    					break;
+    				case FRONT_RIGHT:
+    					mTirePressureFrontRightView.setText("" + tpms.getEvent());
+    					break;
+    				case REAR_LEFT:
+    					mTirePressureRearLeftView.setText("" + tpms.getEvent());
+    					break;
+    				case REAR_RIGHT:
+    					mTirePressureRearRightView.setText("" + tpms.getEvent());
+    					break;
+    				}
+    			}
+    		});
+    	}
+    };
+
+
     // TODO - Tire Pressure listener goes here
     
     TirePressFL.Listener mTirePressureFrontLeftListener = new TirePressFL.Listener() {
@@ -520,27 +726,27 @@ public class VehicleDashboardActivity extends Activity {
                 mVehicleManager.addListener(ACCompressorPower.class,		mACCompressorPowerListener);
 //                mVehicleManager.addListener(AirConditioning.class,			mAirConditioningStatusListener);
                 mVehicleManager.addListener(BatteryLevel.class,				mBatteryLevelListener);
-//                mVehicleManager.addListener(BatteryTemperature.class,		mBatteryTempereatureListener);
-//                mVehicleManager.addListener(ChargingPlugStatus.class,		mChargingPlugStatusListener);
-//                mVehicleManager.addListener(ChargingStatus.class,			mChargingStatusListener);
-//                mVehicleManager.addListener(CustomerSoc.class,				mCustomerSocListener);
-//                mVehicleManager.addListener(DcDcCurrent.class,				mDcDcCurrentListener);
-//                mVehicleManager.addListener(DcDcVoltage.class,				mDcDcVoltageListener);
-//                mVehicleManager.addListener(DrivePower.class,				mDrivePowerListener);
-//                mVehicleManager.addListener(ElectricRange.class,			mElectricRangeListener);
-//                mVehicleManager.addListener(EnginePower.class,				mEnginePowerListener);
-//                mVehicleManager.addListener(EVMode.class,					mEvModeListener);
-//                mVehicleManager.addListener(EVStateOfCharge.class,			mEvStateOfChargeListener);
-//                mVehicleManager.addListener(HeaterStatus.class,				mHeaterStatusListener);
-//                mVehicleManager.addListener(ChargeTime.class,				mHoursUntilChargedListener);
-//                mVehicleManager.addListener(HvBatteryCurrent.class,			mHvBatteryCurrentListener);
-//                mVehicleManager.addListener(HvBatteryVoltage.class,			mHvBatteryVoltageListener);
-//                mVehicleManager.addListener(HybridStateOfCharge.class,		mHybridStateOfChargeListener);
-//                mVehicleManager.addListener(LastRegenEventScore.class,		mLastRegenEventScoreListener);
-//                mVehicleManager.addListener(OverallStateOfCharge.class,		mOverallStateOfChargeListener);
-//                mVehicleManager.addListener(RelativeDrivePower.class,		mRelativeDrivePowerListener);
-//                mVehicleManager.addListener(RelativeEnginePower.class,      mRelativeEnginePowerListener);
-//                mVehicleManager.addListener(TirePressure.class,				mTirePressureListener);
+                mVehicleManager.addListener(BatteryTemperature.class,		mBatteryTemperatureListener);
+                mVehicleManager.addListener(ChargingPlugStatus.class,		mChargingPlugStatusListener);
+                mVehicleManager.addListener(ChargingStatus.class,			mChargingStatusListener);
+                mVehicleManager.addListener(CustomerSoc.class,				mCustomerSocListener);
+                mVehicleManager.addListener(DcDcCurrent.class,				mDcDcCurrentListener);
+                mVehicleManager.addListener(DcDcVoltage.class,				mDcDcVoltageListener);
+                mVehicleManager.addListener(DrivePower.class,				mDrivePowerListener);
+                mVehicleManager.addListener(ElectricRange.class,			mElectricRangeListener);
+                mVehicleManager.addListener(EnginePower.class,				mEnginePowerListener);
+                mVehicleManager.addListener(EVMode.class,					mEVModeListener);
+                mVehicleManager.addListener(EVStateOfCharge.class,			mEVStateOfChargeListener);
+                mVehicleManager.addListener(HeaterStatus.class,				mHeaterStatusListener);
+                mVehicleManager.addListener(ChargeTime.class,				mChargeTimeListener);
+                mVehicleManager.addListener(HvBatteryCurrent.class,			mHvBatteryCurrentListener);
+                mVehicleManager.addListener(HvBatteryVoltage.class,			mHvBatteryVoltageListener);
+                mVehicleManager.addListener(HybridStateOfCharge.class,		mHybridStateOfChargeListener);
+                mVehicleManager.addListener(LastRegenEventScore.class,		mLastRegenEventScoreListener);
+                mVehicleManager.addListener(OverallStateOfCharge.class,		mOverallStateOfChargeListener);
+                mVehicleManager.addListener(RelativeDrivePower.class,		mRelativeDrivePowerListener);
+                mVehicleManager.addListener(RelativeEnginePower.class,      mRelativeEnginePowerListener);
+                mVehicleManager.addListener(TirePressure.class,				mTirePressureListener);
                 mVehicleManager.addListener(TirePressFL.class,				mTirePressureFrontLeftListener);
                 mVehicleManager.addListener(TirePressFR.class,				mTirePressureFrontRightListener);
                 mVehicleManager.addListener(TirePressRL.class,				mTirePressureRearLeftListener);
@@ -600,7 +806,7 @@ public class VehicleDashboardActivity extends Activity {
         mACCompressorPowerView			= (TextView) findViewById(R.id.ac_compressor_power);
         mAirConditioningStatusView		= (TextView) findViewById(R.id.air_conditioning_status);
         mBatteryLevelView				= (TextView) findViewById(R.id.battery_level);
-        mBatteryTempereatureView		= (TextView) findViewById(R.id.battery_temperature);
+        mBatteryTemperatureView		= (TextView) findViewById(R.id.battery_temperature);
         mChargingPlugStatusView			= (TextView) findViewById(R.id.charging_plug_status);
         mChargingStatusView				= (TextView) findViewById(R.id.charging_status);
         mCustomerSocView				= (TextView) findViewById(R.id.customer_soc);
@@ -609,10 +815,10 @@ public class VehicleDashboardActivity extends Activity {
         mDrivePowerView					= (TextView) findViewById(R.id.drive_power);
         mElectricRangeView				= (TextView) findViewById(R.id.electric_range);
         mEnginePowerView				= (TextView) findViewById(R.id.engine_power);
-        mEvModeView						= (TextView) findViewById(R.id.ev_mode);
-        mEvStateOfChargeView			= (TextView) findViewById(R.id.ev_state_of_charge);
+        mEVModeView						= (TextView) findViewById(R.id.ev_mode);
+        mEVStateOfChargeView			= (TextView) findViewById(R.id.ev_state_of_charge);
         mHeaterStatusView				= (TextView) findViewById(R.id.heater_status);
-        mHoursUntilChargedView			= (TextView) findViewById(R.id.hours_until_charged);
+        mChargeTimeView			= (TextView) findViewById(R.id.hours_until_charged);
         mHvBatteryCurrentView			= (TextView) findViewById(R.id.hv_battery_current);
         mHvBatteryVoltageView			= (TextView) findViewById(R.id.hv_battery_voltage);
         mHybridStateOfChargeView		= (TextView) findViewById(R.id.hybrid_state_of_charge);
