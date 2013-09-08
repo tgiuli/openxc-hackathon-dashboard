@@ -43,6 +43,10 @@
     <string name="tire_pressure_rear_left_label">Tire Pressure - Rear Left</string>
     <string name="tire_pressure_rear_right_label">Tire Pressure - Rear Right</string>
     <string name="tire_pressure_status_label">Tire Pressure Status</string>
+    <string name="tire_pressure_front_left_status_label">FL</string>
+    <string name="tire_pressure_front_right_status_label">FR</string>
+    <string name="tire_pressure_rear_left_status_label">RL</string>
+    <string name="tire_pressure_rear_right_status_label">RR</string>
     <!-- CMAX -->
     <string name="ac_compressor_power_label">AC Compressor Power</string>
     <string name="air_conditioning_status_label">Air Conditioning Status</string>

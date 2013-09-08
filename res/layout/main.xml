@@ -528,17 +528,50 @@
             android:id="@+id/tire_pressure_status_label"
             style="@style/DefaultFont"
             android:text="@string/tire_pressure_status_label" />
-        <TextView
-            android:id="@+id/tire_pressure_status"
-            style="@style/DefaultValueFont" />
         
-        
-        
-       
+        <LinearLayout
+            android:id="@+id/tire_pressure_status_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/tire_pressure_front_right_status_label"
+                style="@style/DefaultFont"
+                android:text="@string/tire_pressure_front_right_status_label" />
+            <TextView
+                android:id="@+id/tire_pressure_front_right_status"
+                style="@style/DefaultValueFont" />
+            
+            <TextView
+                android:id="@+id/tire_pressure_front_left_status_label"
+                style="@style/DefaultFont"
+                android:text="@string/tire_pressure_front_left_status_label" />
+            <TextView
+                android:id="@+id/tire_pressure_front_left_status"
+                style="@style/DefaultValueFont" />
+             
+            <TextView
+                android:id="@+id/tire_pressure_rear_right_status_label"
+                style="@style/DefaultFont"
+                android:text="@string/tire_pressure_rear_right_status_label" />
+            <TextView
+                android:id="@+id/tire_pressure_rear_right_status"
+                style="@style/DefaultValueFont" />           
+            
+            <TextView
+                android:id="@+id/tire_pressure_rear_left_status_label"
+                style="@style/DefaultFont"
+                android:text="@string/tire_pressure_rear_left_status_label" />
+            <TextView
+                android:id="@+id/tire_pressure_rear_left_status"
+                style="@style/DefaultValueFont" />
+        </LinearLayout>
         
         <!-- ==========================================
              ==    Not Used Read-Only Signals        ==
              ========================================== -->
+
+
+
         <TextView
             android:id="@+id/header_signalset_notused_label"
             style="@style/HeaderFont"

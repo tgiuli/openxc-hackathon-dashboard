@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import android.view.Menu;
@@ -84,6 +85,10 @@ public class VehicleDashboardActivity extends Activity {
     private TextView mTirePressureRearLeftView;
     private TextView mTirePressureRearRightView;
     private TextView mTirePressureStatusView;
+	private TextView mTirePressureFrontLeftStatusView;
+	private TextView mTirePressureFrontRightStatusView;
+	private TextView mTirePressureRearLeftStatusView;
+	private TextView mTirePressureRearRightStatusView;
     // Not used
     private TextView mWLEStatusView;
     private TextView mLeftDPadCommandView;
@@ -621,6 +626,32 @@ public class VehicleDashboardActivity extends Activity {
     	}
     };
 
+    TirePressureStatus.Listener mTirePressureStatusListener = new TirePressureStatus.Listener() {
+    	public void receive(Measurement measurement)
+    	{
+    		final TirePressureStatus tpms = (TirePressureStatus) measurement;
+    		mHandler.post(new Runnable() {
+    			public void run() {
+    				switch(tpms.getValue().enumValue()){
+    				case FRONT_LEFT:
+    					mTirePressureFrontLeftStatusView.setText("" + tpms.getEvent());
+    					break;
+    				case FRONT_RIGHT:
+    					mTirePressureFrontRightStatusView.setText("" + tpms.getEvent());
+    					break;
+    				case REAR_LEFT:
+    					mTirePressureRearLeftStatusView.setText("" + tpms.getEvent());
+    					break;
+    				case REAR_RIGHT:
+    					mTirePressureRearRightStatusView.setText("" + tpms.getEvent());
+    					break;
+    				}
+    			}
+    		});
+    	}
+    };
+    
+    
     // TODO - Tire Pressure Status listener goes here
     
     // Not used
@@ -751,7 +782,7 @@ public class VehicleDashboardActivity extends Activity {
                 mVehicleManager.addListener(TirePressFR.class,				mTirePressureFrontRightListener);
                 mVehicleManager.addListener(TirePressRL.class,				mTirePressureRearLeftListener);
                 mVehicleManager.addListener(TirePressRR.class,				mTirePressureRearRightListener);
-//                mVehicleManager.addListener(TirePressureStatus.class,		mTirePressureStatusListener);
+                mVehicleManager.addListener(TirePressureStatus.class,		mTirePressureStatusListener);
                 
                 // Non-used signals
                 mVehicleManager.addListener(WLEStatus.class, 				mWLEStatusListener);
@@ -773,6 +804,8 @@ public class VehicleDashboardActivity extends Activity {
             mIsBound = false;
         }
     };
+
+
 
 
     @Override
@@ -831,7 +864,11 @@ public class VehicleDashboardActivity extends Activity {
         mTirePressureFrontRightView		= (TextView) findViewById(R.id.tire_pressure_front_right);
         mTirePressureRearLeftView		= (TextView) findViewById(R.id.tire_pressure_rear_left);
         mTirePressureRearRightView		= (TextView) findViewById(R.id.tire_pressure_rear_right);
-        mTirePressureStatusView			= (TextView) findViewById(R.id.tire_pressure_status);
+        //mTirePressureStatusView			= (TextView) findViewById(R.id.tire_pressure_status);
+        mTirePressureFrontLeftStatusView = (TextView) findViewById(R.id.tire_pressure_front_left_status);
+        mTirePressureFrontRightStatusView = (TextView) findViewById(R.id.tire_pressure_front_right_status);
+        mTirePressureRearLeftStatusView = (TextView) findViewById(R.id.tire_pressure_rear_left_status);
+        mTirePressureRearRightStatusView = (TextView) findViewById(R.id.tire_pressure_rear_right_status);
         
         // Not use Signals
         mWLEStatusView					= (TextView) findViewById(R.id.wle_status);
@@ -1272,8 +1309,9 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.tire_pressure_rear_left_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.tire_pressure_rear_right)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.tire_pressure_rear_right_label)).setVisibility(View.VISIBLE);
-    	((TextView)findViewById(R.id.tire_pressure_status)).setVisibility(View.VISIBLE);
-    	((TextView)findViewById(R.id.tire_pressure_status_label)).setVisibility(View.VISIBLE);
+//    	((TextView)findViewById(R.id.tire_pressure_status)).setVisibility(View.VISIBLE);
+//    	((TextView)findViewById(R.id.tire_pressure_status_label)).setVisibility(View.VISIBLE);
+    	((LinearLayout)findViewById(R.id.tire_pressure_status_layout)).setVisibility(View.VISIBLE);
     	// Non-used signals
     	((TextView)findViewById(R.id.wle_status)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.wle_status_label)).setVisibility(View.VISIBLE);
@@ -1387,8 +1425,9 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.tire_pressure_rear_left_label)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.tire_pressure_rear_right)).setVisibility(View.VISIBLE);
     	((TextView)findViewById(R.id.tire_pressure_rear_right_label)).setVisibility(View.VISIBLE);
-    	((TextView)findViewById(R.id.tire_pressure_status)).setVisibility(View.VISIBLE);
-    	((TextView)findViewById(R.id.tire_pressure_status_label)).setVisibility(View.VISIBLE);
+//    	((TextView)findViewById(R.id.tire_pressure_status)).setVisibility(View.VISIBLE);
+//    	((TextView)findViewById(R.id.tire_pressure_status_label)).setVisibility(View.VISIBLE);
+    	((LinearLayout)findViewById(R.id.tire_pressure_status_layout)).setVisibility(View.VISIBLE);
     	// Non-used signals
     	((TextView)findViewById(R.id.wle_status)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.wle_status_label)).setVisibility(View.GONE);
@@ -1502,8 +1541,9 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.tire_pressure_rear_left_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.tire_pressure_rear_right)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.tire_pressure_rear_right_label)).setVisibility(View.GONE);
-    	((TextView)findViewById(R.id.tire_pressure_status)).setVisibility(View.GONE);
-    	((TextView)findViewById(R.id.tire_pressure_status_label)).setVisibility(View.GONE);
+//    	((TextView)findViewById(R.id.tire_pressure_status)).setVisibility(View.GONE);
+//    	((TextView)findViewById(R.id.tire_pressure_status_label)).setVisibility(View.GONE);
+    	((LinearLayout)findViewById(R.id.tire_pressure_status_layout)).setVisibility(View.GONE);
     	// Non-used signals
     	((TextView)findViewById(R.id.wle_status)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.wle_status_label)).setVisibility(View.GONE);
@@ -1617,8 +1657,9 @@ public class VehicleDashboardActivity extends Activity {
     	((TextView)findViewById(R.id.tire_pressure_rear_left_label)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.tire_pressure_rear_right)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.tire_pressure_rear_right_label)).setVisibility(View.GONE);
-    	((TextView)findViewById(R.id.tire_pressure_status)).setVisibility(View.GONE);
-    	((TextView)findViewById(R.id.tire_pressure_status_label)).setVisibility(View.GONE);
+//    	((TextView)findViewById(R.id.tire_pressure_status)).setVisibility(View.GONE);
+//    	((TextView)findViewById(R.id.tire_pressure_status_label)).setVisibility(View.GONE);
+    	((LinearLayout)findViewById(R.id.tire_pressure_status_layout)).setVisibility(View.GONE);
     	// Non-used signals
     	((TextView)findViewById(R.id.wle_status)).setVisibility(View.GONE);
     	((TextView)findViewById(R.id.wle_status_label)).setVisibility(View.GONE);
