@@ -10,210 +10,589 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
+        
+        <!-- ==========================================
+             ==    Header and Vehicle Type Labels    ==
+             ========================================== -->
+        <TextView
+            android:id="@+id/header_phevblue_label"
+            style="@style/HeaderFont"
+            android:text="@string/header_phevblue_label"
+            android:background="#0000ff"
+            android:visibility="gone"
+             />
+        <TextView
+            android:id="@+id/header_phevred_label"
+            style="@style/HeaderFont"
+            android:text="@string/header_phevred_label"
+            android:background="#ff0000" 
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/header_mediacmax_label"
+            style="@style/HeaderFont"
+            android:text="@string/header_mediacmax_label"
+            android:background="#c8e3e8"
+            android:visibility="gone"
+            />
+        
+        <!-- ==========================================
+             ==    Standard Read-Only Signals        ==
+             ========================================== -->
+        <TextView
+            android:id="@+id/header_signalset_standard_label"
+            style="@style/HeaderFont"
+            android:text="@string/header_signalset_standard"
+            android:background="#ffffff" />
+        
+        <!--  accelerator_pedal_position -->
+        <TextView
+            android:id="@+id/accelerator_pedal_position_label"
+            style="@style/DefaultFont"
+            android:text="@string/accelerator_pedal_position_label" />
+        <TextView
+            android:id="@+id/accelerator_pedal_position"
+            style="@style/DefaultValueFont" />
+            
+        
+        <!-- brake_pedal_status -->
+        <TextView
+            android:id="@+id/brake_pedal_status_label"
+            style="@style/DefaultFont"
+            android:text="@string/brake_pedal_status_label" />
+        <TextView
+            android:id="@+id/brake_pedal_status"
+            style="@style/DefaultValueFont" />
+        
+        
+        <!-- door_status -->
+		<TextView
+            android:id="@+id/door_status_label"
+            style="@style/DefaultFont"
+            android:text="@string/door_status_label" />
+        <TextView
+            android:id="@+id/door_status"
+            style="@style/DefaultValueFont" />
+        
+		<!-- engine_speed -->
+        <TextView
+            android:id="@+id/engine_speed_label"
+            style="@style/DefaultFont"
+            android:text="@string/engine_speed_label" />
+        <TextView
+            android:id="@+id/engine_speed"
+            style="@style/DefaultValueFont" />
+        
+        
+        <!-- fuel_consumed_since_restart -->
+        <TextView
+            android:id="@+id/fuel_consumed_label"
+            style="@style/DefaultFont"
+            android:text="@string/fuel_consumed_label" />
+        <TextView
+            android:id="@+id/fuel_consumed"
+            style="@style/DefaultValueFont" />
+        
+        
+        <!-- fuel_level -->
+        <TextView
+            android:id="@+id/fuel_level_label"
+            style="@style/DefaultFont"
+            android:text="@string/fuel_level_label" />
+        <TextView
+            android:id="@+id/fuel_level"
+            style="@style/DefaultValueFont" />
+        
+        <!-- gear_lever_position -->
+        <TextView
+            android:id="@+id/gear_lever_position_label"
+            style="@style/DefaultFont"
+            android:text="@string/gear_lever_position_label" />
+        
+        <TextView
+            android:id="@+id/gear_lever_position"
+            style="@style/DefaultValueFont" />
+        
+        
+        <!-- headlamp_status -->
+        <TextView
+            android:id="@+id/headlamp_status_label"
+            style="@style/DefaultFont"
+            android:text="@string/headlamp_status_label" />
+        <TextView
+            android:id="@+id/headlamp_status"
+            style="@style/DefaultValueFont" />
+        
+        
+        <!-- TODO: HIGH_BEAM_STATUS -->
+        
+        <!-- ignition_status -->
+        <TextView
+            android:id="@+id/ignition_label"
+            style="@style/DefaultFont"
+            android:text="@string/ignition_label" />
+        <TextView
+            android:id="@+id/ignition"
+            style="@style/DefaultValueFont" />
+        
+        <!-- latitude -->
+        <TextView
+            android:id="@+id/latitude_label"
+            style="@style/DefaultFont"
+            android:text="@string/latitude_label" />
+        <TextView
+            android:id="@+id/latitude"
+            style="@style/DefaultValueFont" />
+
+        <!-- longitude -->
+        <TextView
+            android:id="@+id/longitude_label"
+            style="@style/DefaultFont"
+            android:text="@string/longitude_label" />
+        <TextView
+            android:id="@+id/longitude"
+            style="@style/DefaultValueFont" />
+
+        
+        <!-- odometer -->
+        <TextView
+            android:id="@+id/odometer_label"
+            style="@style/DefaultFont"
+            android:text="@string/odometer_label" />
+        <TextView
+            android:id="@+id/odometer"
+            style="@style/DefaultValueFont" />
+        
+        
+        <!-- parking_brake_status -->
+        <TextView
+            android:id="@+id/parking_brake_status_label"
+            style="@style/DefaultFont"
+            android:text="@string/parking_brake_status_label" />
+        <TextView
+            android:id="@+id/parking_brake_status"
+            style="@style/DefaultValueFont" />
+
+        <!-- steering_wheel_angle -->
+        <TextView
+            android:id="@+id/steering_wheel_angle_label"
+            style="@style/DefaultFont"
+            android:text="@string/steering_wheel_angle_label" />
+        <TextView
+            android:id="@+id/steering_wheel_angle"
+            style="@style/DefaultValueFont" />
+        
+        
+        <!-- torque_at_transmission -->
+        <TextView
+            android:id="@+id/torque_at_transmission_label"
+            style="@style/DefaultFont"
+            android:text="@string/torque_at_transmission_label" />
+        <TextView
+            android:id="@+id/torque_at_transmission"
+            style="@style/DefaultValueFont" />
+        
+        
+        <!-- transmission_gear_position -->
+        <TextView
+            android:id="@+id/transmission_gear_pos_label"
+            style="@style/DefaultFont"
+            android:text="@string/transmission_gear_pos_label" />
+        <TextView
+            android:id="@+id/transmission_gear_pos"
+            style="@style/DefaultValueFont" />
+        
+        
+        <!-- vehicle_speed -->
+        <TextView
+            android:id="@+id/vehicle_speed_label"
+            style="@style/DefaultFont"
+            android:text="@string/vehicle_speed_label" />
+        <TextView
+            android:id="@+id/vehicle_speed"
+            style="@style/DefaultValueFont" />
+        
+        
+        <!-- windshield_wiper_status -->
+        <TextView
+            android:id="@+id/wiper_status_label"
+            style="@style/DefaultFont"
+            android:text="@string/wiper_status_label" />
+        <TextView
+            android:id="@+id/wiper_status"
+            style="@style/DefaultValueFont" />
+
+        
+        
+        
+        <!-- ==========================================
+             ==    Extended Read-Only Signals        ==
+             ========================================== -->
+        <TextView
+            android:id="@+id/header_signalset_extended_label"
+            style="@style/HeaderFont"
+            android:text="@string/header_signalset_extended"
+            android:background="#ffffff" />
+        
+        
+        <!-- ac_compressor_power-->
+        <TextView
+            android:id="@+id/ac_compressor_power_label"
+            style="@style/DefaultFont"
+            android:text="@string/ac_compressor_power_label" />
+        <TextView
+            android:id="@+id/ac_compressor_power"
+            style="@style/DefaultValueFont" />
+        
+        
+        <!-- air_conditioning_status -->
+        <TextView
+            android:id="@+id/air_conditioning_status_label"
+            style="@style/DefaultFont"
+            android:text="@string/air_conditioning_status_label" />
+        <TextView
+            android:id="@+id/air_conditioning_status"
+            style="@style/DefaultValueFont" />
+        
+        
+		<!-- battery_level -->
+        <TextView
+            android:id="@+id/battery_level_label"
+            style="@style/DefaultFont"
+            android:text="@string/battery_level_label" />
+        <TextView
+            android:id="@+id/battery_level"
+            style="@style/DefaultValueFont" />
+        
+        
+        <!-- battery_temperature -->
+        <TextView
+            android:id="@+id/battery_temperature_label"
+            style="@style/DefaultFont"
+            android:text="@string/battery_temperature_label" />
+        <TextView
+            android:id="@+id/battery_temperature"
+            style="@style/DefaultValueFont" />
+        
+
+        <!-- charging_plug_status -->
+        <TextView
+            android:id="@+id/charging_plug_status_label"
+            style="@style/DefaultFont"
+            android:text="@string/charging_plug_status_label" />
+        <TextView
+            android:id="@+id/charging_plug_status"
+            style="@style/DefaultValueFont" />
+
+        
+		<!-- charging_status -->
+        <TextView
+            android:id="@+id/charging_status_label"
+            style="@style/DefaultFont"
+            android:text="@string/charging_status_label" />
+        <TextView
+            android:id="@+id/charging_status"
+            style="@style/DefaultValueFont" />
+        
+        
+		<!-- customer_soc -->
+        <TextView
+            android:id="@+id/customer_soc_label"
+            style="@style/DefaultFont"
+            android:text="@string/customer_soc_label" />
+        <TextView
+            android:id="@+id/customer_soc"
+            style="@style/DefaultValueFont" />
+
+        
+		<!-- dcdc_current -->
+        <TextView
+            android:id="@+id/dcdc_current_label"
+            style="@style/DefaultFont"
+            android:text="@string/dcdc_current_label" />
+        <TextView
+            android:id="@+id/dcdc_current"
+            style="@style/DefaultValueFont" />
+
+        
+        <!-- dcdc_voltage -->
+        <TextView
+            android:id="@+id/dcdc_voltage_label"
+            style="@style/DefaultFont"
+            android:text="@string/dcdc_voltage_label" />
+        <TextView
+            android:id="@+id/dcdc_voltage"
+            style="@style/DefaultValueFont" />
+
+        
+		<!-- electric_range -->
+        <TextView
+            android:id="@+id/electric_range_label"
+            style="@style/DefaultFont"
+            android:text="@string/electric_range_label" />
+        <TextView
+            android:id="@+id/electric_range"
+            style="@style/DefaultValueFont" />
+
+
+		<!-- engine_power -->
+        <TextView
+            android:id="@+id/engine_power_label"
+            style="@style/DefaultFont"
+            android:text="@string/engine_power_label" />
+        <TextView
+            android:id="@+id/engine_power"
+            style="@style/DefaultValueFont" />
+
+		
+		<!-- ev_mode -->
+        <TextView
+            android:id="@+id/ev_mode_label"
+            style="@style/DefaultFont"
+            android:text="@string/ev_mode_label" />
+        <TextView
+            android:id="@+id/ev_mode"
+            style="@style/DefaultValueFont" />
+
+
+		<!-- ev_state_of_charge -->
+        <TextView
+            android:id="@+id/ev_state_of_charge_label"
+            style="@style/DefaultFont"
+            android:text="@string/ev_state_of_charge_label" />
+        <TextView
+            android:id="@+id/ev_state_of_charge"
+            style="@style/DefaultValueFont" />
+
+
+		<!-- heater_status -->
+        <TextView
+            android:id="@+id/heater_status_label"
+            style="@style/DefaultFont"
+            android:text="@string/heater_status_label" />
+        <TextView
+            android:id="@+id/heater_status"
+            style="@style/DefaultValueFont" />
+
+
+		<!-- hours_until_charged -->
+        <TextView
+            android:id="@+id/hours_until_charged_label"
+            style="@style/DefaultFont"
+            android:text="@string/hours_until_charged_label" />
+        <TextView
+            android:id="@+id/hours_until_charged"
+            style="@style/DefaultValueFont" />
+
+
+		<!-- hv_battery_current -->
+        <TextView
+            android:id="@+id/hv_battery_current_label"
+            style="@style/DefaultFont"
+            android:text="@string/hv_battery_current_label" />
+        <TextView
+            android:id="@+id/hv_battery_current"
+            style="@style/DefaultValueFont" />
+
+
+		<!-- hv_battery_voltage -->
+        <TextView
+            android:id="@+id/hv_battery_voltage_label"
+            style="@style/DefaultFont"
+            android:text="@string/hv_battery_voltage_label" />
+        <TextView
+            android:id="@+id/hv_battery_voltage"
+            style="@style/DefaultValueFont" />
+
+		
+		<!-- hybrid_state_of_charge -->
+        <TextView
+            android:id="@+id/hybrid_state_of_charge_label"
+            style="@style/DefaultFont"
+            android:text="@string/hybrid_state_of_charge_label" />
+        <TextView
+            android:id="@+id/hybrid_state_of_charge"
+            style="@style/DefaultValueFont" />
+
+
+		<!-- last_regen_event_score -->
+        <TextView
+            android:id="@+id/last_regen_event_score_label"
+            style="@style/DefaultFont"
+            android:text="@string/last_regen_event_score_label" />
+        <TextView
+            android:id="@+id/last_regen_event_score"
+            style="@style/DefaultValueFont" />
+
+
+		<!-- overall_state_of_charge -->
+        <TextView
+            android:id="@+id/overall_state_of_charge_label"
+            style="@style/DefaultFont"
+            android:text="@string/overall_state_of_charge_label" />
+        <TextView
+            android:id="@+id/overall_state_of_charge"
+            style="@style/DefaultValueFont" />
+
+		
+		<!-- relative_drive_power -->
+        <TextView
+            android:id="@+id/relative_drive_power_label"
+            style="@style/DefaultFont"
+            android:text="@string/relative_drive_power_label" />
+        <TextView
+            android:id="@+id/relative_drive_power"
+            style="@style/DefaultValueFont" />
+
+
+		<!-- relative_engine_power -->
+        <TextView
+            android:id="@+id/relative_engine_power_label"
+            style="@style/DefaultFont"
+            android:text="@string/relative_engine_power_label" />
+        <TextView
+            android:id="@+id/relative_engine_power"
+            style="@style/DefaultValueFont" />
+
+
+        <!-- tire_pressure -->
+        <TextView
+            android:id="@+id/tire_pressure_label"
+            style="@style/DefaultFont"
+            android:text="@string/tire_pressure_label" />
+        <TextView
+            android:id="@+id/tire_pressure"
+            style="@style/DefaultValueFont" />
+
+        
+        <!-- tire_pressure_front_left  -->
+        <TextView
+            android:id="@+id/tire_pressure_front_left_label"
+            style="@style/DefaultFont"
+            android:text="@string/tire_pressure_front_left_label" />
+        <TextView
+            android:id="@+id/tire_pressure_front_left"
+            style="@style/DefaultValueFont" />
+
+        
+        <!-- tire_pressure_front_right -->
+        <TextView
+            android:id="@+id/tire_pressure_front_right_label"
+            style="@style/DefaultFont"
+            android:text="@string/tire_pressure_front_right_label" />
+        <TextView
+            android:id="@+id/tire_pressure_front_right"
+            style="@style/DefaultValueFont" />
+
+        
+        <!-- tire_pressure_rear_left   -->
+        <TextView
+            android:id="@+id/tire_pressure_rear_left_label"
+            style="@style/DefaultFont"
+            android:text="@string/tire_pressure_rear_left_label" />
+        <TextView
+            android:id="@+id/tire_pressure_rear_left"
+            style="@style/DefaultValueFont" />
+
+        
+        <!-- tire_pressure_rear_right  -->
+        <TextView
+            android:id="@+id/tire_pressure_rear_right_label"
+            style="@style/DefaultFont"
+            android:text="@string/tire_pressure_rear_right_label" />
+        <TextView
+            android:id="@+id/tire_pressure_rear_right"
+            style="@style/DefaultValueFont" />
+
+        
+        <!-- tire_pressure_status -->
+        <TextView
+            android:id="@+id/tire_pressure_status_label"
+            style="@style/DefaultFont"
+            android:text="@string/tire_pressure_status_label" />
+        <TextView
+            android:id="@+id/tire_pressure_status"
+            style="@style/DefaultValueFont" />
+        
+        
+        
+       
+        
+        <!-- ==========================================
+             ==    Not Used Read-Only Signals        ==
+             ========================================== -->
+        <TextView
+            android:id="@+id/header_signalset_notused_label"
+            style="@style/HeaderFont"
+            android:text="@string/header_signalset_notused"
+            android:background="#ffffff" />
+        
+        <!-- wle_status_label -->
         <TextView
             android:id="@+id/wle_status_label"
             style="@style/DefaultFont"
             android:text="@string/wle_status_label" />
         <TextView 
             android:id="@+id/wle_status"
-            style="@style/DefaultFont"/>
+            style="@style/DefaultValueFont"/>
 
+        <!-- left_dpad_command -->
         <TextView 
             android:id="@+id/left_dpad_command_label"
             style="@style/DefaultFont"
             android:text="@string/left_dpad_command_label" />
         <TextView
             android:id="@+id/left_dpad_command"
-            style="@style/DefaultFont" />
+            style="@style/DefaultValueFont" />
         
+        <!-- right_dpad_command -->
         <TextView 
             android:id="@+id/right_dpad_command_label"
             style="@style/DefaultFont"
             android:text="@string/right_dpad_command_label" />
         <TextView
             android:id="@+id/right_dpad_command"
-            style="@style/DefaultFont" />
+            style="@style/DefaultValueFont" />
         
-        <TextView
-            android:id="@+id/steering_wheel_angle_label"
-            style="@style/DefaultFont"
-            android:text="@string/steering_wheel_angle_label" />
 
-        <TextView
-            android:id="@+id/steering_wheel_angle"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/vehicle_speed_label"
-            style="@style/DefaultFont"
-            android:text="@string/vehicle_speed_label" />
-
-        <TextView
-            android:id="@+id/vehicle_speed"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/fuel_consumed_label"
-            style="@style/DefaultFont"
-            android:text="@string/fuel_consumed_label" />
-
-        <TextView
-            android:id="@+id/fuel_consumed"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/fuel_level_label"
-            style="@style/DefaultFont"
-            android:text="@string/fuel_level_label" />
-
-        <TextView
-            android:id="@+id/fuel_level"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/odometer_label"
-            style="@style/DefaultFont"
-            android:text="@string/odometer_label" />
-
-        <TextView
-            android:id="@+id/odometer"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/wiper_status_label"
-            style="@style/DefaultFont"
-            android:text="@string/wiper_status_label" />
-
-        <TextView
-            android:id="@+id/wiper_status"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/brake_pedal_status_label"
-            style="@style/DefaultFont"
-            android:text="@string/brake_pedal_status_label" />
-
-        <TextView
-            android:id="@+id/brake_pedal_status"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/parking_brake_status_label"
-            style="@style/DefaultFont"
-            android:text="@string/parking_brake_status_label" />
-
-        <TextView
-            android:id="@+id/parking_brake_status"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/headlamp_status_label"
-            style="@style/DefaultFont"
-            android:text="@string/headlamp_status_label" />
-
-        <TextView
-            android:id="@+id/headlamp_status"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/engine_speed_label"
-            style="@style/DefaultFont"
-            android:text="@string/engine_speed_label" />
-
-        <TextView
-            android:id="@+id/engine_speed"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/torque_at_transmission_label"
-            style="@style/DefaultFont"
-            android:text="@string/torque_at_transmission_label" />
-
-        <TextView
-            android:id="@+id/torque_at_transmission"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/accelerator_pedal_position_label"
-            style="@style/DefaultFont"
-            android:text="@string/accelerator_pedal_position_label" />
-
-        <TextView
-            android:id="@+id/accelerator_pedal_position"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/transmission_gear_pos_label"
-            style="@style/DefaultFont"
-            android:text="@string/transmission_gear_pos_label" />
-
-        <TextView
-            android:id="@+id/transmission_gear_pos"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/ignition_label"
-            style="@style/DefaultFont"
-            android:text="@string/ignition_label" />
-
-        <TextView
-            android:id="@+id/ignition"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/latitude_label"
-            style="@style/DefaultFont"
-            android:text="@string/latitude_label" />
-
-        <TextView
-            android:id="@+id/latitude"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/longitude_label"
-            style="@style/DefaultFont"
-            android:text="@string/longitude_label" />
-
-        <TextView
-            android:id="@+id/longitude"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/android_latitude_label"
-            style="@style/DefaultFont"
-            android:text="@string/android_latitude_label" />
-
-        <TextView
-            android:id="@+id/android_latitude"
-            style="@style/DefaultFont" />
-
-        <TextView
-            android:id="@+id/android_longitude_label"
-            style="@style/DefaultFont"
-            android:text="@string/android_longitude_label" />
-
-        <TextView
-            android:id="@+id/android_longitude"
-            style="@style/DefaultFont" />
-
+        <!-- button_event -->
         <TextView
             android:id="@+id/button_event_label"
             style="@style/DefaultFont"
             android:text="@string/button_event_label" />
-
         <TextView
             android:id="@+id/button_event"
-            style="@style/DefaultFont" />
-
+            style="@style/DefaultValueFont" />
+        
+        
+        <!-- ==========================================
+             ==      Android Internal Signals        ==
+             ========================================== -->
         <TextView
-            android:id="@+id/door_status_label"
+            android:id="@+id/header_signalset_internal_label"
+            style="@style/HeaderFont"
+            android:text="@string/header_signalset_internal"
+            android:background="#ffffff" />
+        
+        <!-- android_latitude -->
+        <TextView
+            android:id="@+id/android_latitude_label"
             style="@style/DefaultFont"
-            android:text="@string/door_status_label" />
-
+            android:text="@string/android_latitude_label" />
         <TextView
-            android:id="@+id/door_status"
-            style="@style/DefaultFont" />
+            android:id="@+id/android_latitude"
+            style="@style/DefaultValueFont" />
 
+		<!-- android_longitude -->
+        <TextView
+            android:id="@+id/android_longitude_label"
+            style="@style/DefaultFont"
+            android:text="@string/android_longitude_label" />
+        <TextView
+            android:id="@+id/android_longitude"
+            style="@style/DefaultValueFont" />
+        
+        
     </LinearLayout>
 
 </ScrollView>

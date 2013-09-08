@@ -1,30 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Lee Vehicle Dashboard</string>
-    <string name="steering_wheel_angle_label">Steering Wheel Angle</string>
-    <string name="vehicle_speed_label">Vehicle Speed</string>
+    <!-- Vehicle Configuration Specific Strings -->
+    <string name="header_phevblue_label">PHEV BLUE - Fusion Energi Modified</string>
+    <string name="header_phevred_label">PHEV RED - CMAX Energi Modified</string>
+    <string name="header_mediacmax_label">Media CMAX - CMAX Energi Standard</string>
+    
+    <!-- Signal Set Header Strings -->
+    <string name="header_signalset_standard">Standard Signals</string>
+    <string name="header_signalset_extended">Hackathon Extended Signals</string>
+    <string name="header_signalset_notused">Not Used Signals</string>
+    <string name="header_signalset_internal">Android Internal Signals</string>
+    
+    <!-- Standard Signal Strings -->
+    <string name="accelerator_pedal_position_label">Accelerator Pedal Position</string>
+    <string name="brake_pedal_status_label">Brake Pedal Status</string>
+    <string name="door_status_label">Door Status</string>
+    <string name="engine_speed_label">Engine Speed</string>
     <string name="fuel_consumed_label">Fuel Consumed</string>
     <string name="fuel_level_label">Fuel Level</string>
-    <string name="odometer_label">Odometer</string>
-    <string name="wiper_status_label">Windshield Wiper Status</string>
-    <string name="brake_pedal_status_label">Brake Pedal Status</string>
+    <string name="gear_lever_position_label">Gear Lever Position</string>
     <string name="headlamp_status_label">Headlamp Status</string>
-    <string name="engine_speed_label">Engine Speed</string>
-    <string name="torque_at_transmission_label">Torque At Transmission</string>
-    <string name="accelerator_pedal_position_label">
-        Accelerator Pedal Position
-    </string>
-    <string name="transmission_gear_pos_label">
-        Transmission Gear Position
-    </string>
+    <string name="high_beam_status_label"></string>
     <string name="ignition_label">Ignition Status</string>
     <string name="latitude_label">Latitude</string>
     <string name="longitude_label">Longitude</string>
+    <string name="odometer_label">Odometer</string>
+    <string name="parking_brake_status_label">Parking Brake Status</string>
+    <string name="steering_wheel_angle_label">Steering Wheel Angle</string>
+    <string name="torque_at_transmission_label">Torque At Transmission</string>
+    <string name="transmission_gear_pos_label">Transmission Gear Position</string>
+    <string name="vehicle_speed_label">Vehicle Speed</string>
+    <string name="wiper_status_label">Windshield Wiper Status</string>
+    
+    <!-- Extended Signal Strings -->
+    <!-- Fusion -->
+    <string name="battery_level_label">Battery Level</string>
+    <string name="charging_status_label">Charging Status</string>
+    <string name="tire_pressure_label">Tire Pressure</string>
+    <string name="tire_pressure_front_left_label">Tire Pressure - Front Left</string>
+    <string name="tire_pressure_front_right_label">Tire Pressure - Front Right</string>
+    <string name="tire_pressure_rear_left_label">Tire Pressure - Rear Left</string>
+    <string name="tire_pressure_rear_right_label">Tire Pressure - Rear Right</string>
+    <string name="tire_pressure_status_label">Tire Pressure Status</string>
+    <!-- CMAX -->
+    <string name="ac_compressor_power_label">AC Compressor Power</string>
+    <string name="air_conditioning_status_label">Air Conditioning Status</string>
+    <string name="battery_temperature_label">Battery Temperature</string>
+    <string name="charging_plug_status_label">Charging Plug Status</string>
+    <string name="charging_status_label">Charging Status</string>
+    <string name="customer_soc_label">Customer SOC</string>
+    <string name="dcdc_current_label">DC/DC Current</string>
+    <string name="dcdc_voltage_label">DC/DC Voltage</string>
+    <string name="drive_power_label">Drive Power</string>
+    <string name="electric_range_label">Electric Range</string>
+    <string name="engine_power_label">Engine Power</string>
+    <string name="ev_mode_label">EV Mode</string>
+    <string name="ev_state_of_charge_label">EV State Of Charge</string>
+    <string name="heater_status_label">Heater Status</string>
+    <string name="hours_until_charged_label">Charge Time</string>
+    <string name="hv_battery_current_label">High-Voltage Battery Current</string>
+    <string name="hv_battery_voltage_label">High-Voltage Battery Voltage</string>
+    <string name="hybrid_state_of_charge_label">Hybrid SOC</string>
+    <string name="last_regen_event_score_label">Last Regen Event Score</string>
+    <string name="overall_state_of_charge_label">Overall SOC</string>
+    <string name="relative_drive_power_label">Relative Drive Power</string>
+    <string name="relative_engine_power_label">Relative Engine Power</string>
+    
+    
+    <!-- Unused Signal Strings -->
     <string name="android_latitude_label">Android Latitude</string>
     <string name="android_longitude_label">Android Longitude</string>
-    <string name="parking_brake_status_label">Parking Brake Status</string>
     <string name="button_event_label">Button Event</string>
-    <string name="door_status_label">Door Status</string>
     <string name="left_turn">Left Turn</string>
     <string name="right_turn">Right Turn</string>
     <string name="wle_status_label">WLE Status</string>

@@ -66,4 +66,14 @@
 	    </item>
 	    </menu>
 	    </item>
+	    <item android:id="@+id/setvehicle_menu" android:title="Set Vehicle">
+	        <menu>
+	            <group android:id="@+id/setvehicle">
+	            	<item android:id="@+id/set_phevblue"  android:title="PHEV BLUE"/>
+	           	 	<item android:id="@+id/set_phevred"   android:title="PHEV RED"/>
+	            	<item android:id="@+id/set_phevmedia" android:title="PHEV TOOTHPASTE"/>
+	            	<item android:id="@+id/set_showall"   android:title="Show All" />
+	            </group>
+	        </menu>
+	    </item>
 </menu>
